@@ -1,13 +1,61 @@
-import java.util.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class Codeforces1A {
+import javax.swing.JComponent;
+import javax.swing.JFrame;
 
+public class YourAdventure extends JComponent implements MouseListener {
+
+	public static String nameOfApp = "Programming a Game, the Game";
+	
+	
+	public YourAdventure() {
+		addMouseListener(this);
+	}
+	
+	public void paint(Graphics g) {
+	
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
-		int n = scan.nextInt();
-    int a=0;
-    int b=0;
-    
-    System.out.println(a + b);
-  }
+		JFrame frame = new JFrame(nameOfApp);
+		frame.getDefaultCloseOperation();
+		frame.add(new YourAdventure());
+		frame.setSize(500, 500);
+		frame.setVisible(true);
+		frame.getContentPane().setBackground(Color.RED);
+	}
+
 }
