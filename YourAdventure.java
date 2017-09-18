@@ -1,3 +1,4 @@
+package adventuurueererere;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -11,7 +12,8 @@ public class YourAdventure extends JComponent implements MouseListener {
 	public static String nameOfApp = "Programming a Game, the Game";
 
 	int state = 0;
-
+	int x = 20;
+	
 	public YourAdventure() {
 		addMouseListener(this);
 	}
@@ -29,19 +31,32 @@ public class YourAdventure extends JComponent implements MouseListener {
 			Font font = new Font("Impact", Font.BOLD, 40);
 			g.setFont(font);
 			g.setColor(Color.decode("#551A8B"));
-			g.drawString("Skyrim, A text based Intereptation", 300, 50);
+			g.drawString("Let's choose your Race, What Race are you?", x, 50);
 			g.setColor(Color.BLACK);
-			g.drawString("Started2", 330, 350);
-			g.drawString("Load", 760, 350);
+			g.drawString("Nord", x, 100);
+			g.drawString("Elf", x, 150);
+			g.drawString("Khajit", x, 200);
+			g.drawString("Argonian", x, 250);
+		} else if (state == 2) {
+			Font font = new Font("Impact", Font.BOLD, 40);
+			g.setFont(font);
+			g.setColor(Color.decode("#551A8B"));
+			g.drawString("Let's choose your Race, What Race are you?", x, 50);
+			g.setColor(Color.BLACK);
+			g.drawString("Nord", x, 100);
+			g.drawString("Elf", x, 150);
+			g.drawString("Khajit", x, 200);
+			g.drawString("Argonian", x, 250);
 		}
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		System.out.println(e.getX() + ", " + e.getY());
-		if (e.getX() >= 330 && e.getY() >= 315 && e.getX() <= 420 && e.getY() <= 350) {
-			state = 1;
-			System.out.println(state);
+		if (state == 0 && e.getX() >= 330 && e.getY() >= 315 && e.getX() <= 420 && e.getY() <= 350) {
+			state++;
+		} else if (state == 1 && e.getX() >= 330 && e.getY() >= 315 && e.getX() <= 420 && e.getY() <= 350) {
+			state++;
 		}
 		repaint();
 	}
@@ -79,5 +94,5 @@ public class YourAdventure extends JComponent implements MouseListener {
 		frame.setVisible(true);
 		frame.getContentPane().setBackground(Color.decode("#f44e42"));
 	}
-
+	
 }
