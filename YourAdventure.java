@@ -1,4 +1,3 @@
-package adventuurueererere;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -13,7 +12,10 @@ public class YourAdventure extends JComponent implements MouseListener {
 
 	int state = 0;
 	int x = 20;
-	
+	String race = "default";
+	String abil = "default";
+	String ally = "default";
+
 	public YourAdventure() {
 		addMouseListener(this);
 	}
@@ -41,22 +43,137 @@ public class YourAdventure extends JComponent implements MouseListener {
 			Font font = new Font("Impact", Font.BOLD, 40);
 			g.setFont(font);
 			g.setColor(Color.decode("#551A8B"));
-			g.drawString("Let's choose your Race, What Race are you?", x, 50);
+			g.drawString("I see, so you are a " + race + " correct?", x, 50);
 			g.setColor(Color.BLACK);
-			g.drawString("Nord", x, 100);
-			g.drawString("Elf", x, 150);
-			g.drawString("Khajit", x, 200);
-			g.drawString("Argonian", x, 250);
+			g.drawString("Yes", x, 100);
+			g.drawString("No", x, 150);
+		} else if (state == 3) {
+			Font font = new Font("Impact", Font.BOLD, 40);
+			g.setFont(font);
+			g.setColor(Color.decode("#551A8B"));
+			g.drawString("What Class do you wish to be?", x, 50);
+			g.setColor(Color.BLACK);
+			g.drawString("Warrior", x, 100);
+			g.drawString("Archer", x, 150);
+			g.drawString("Mage", x, 200);
+		} else if (state == 4) {
+			Font font = new Font("Impact", Font.BOLD, 40);
+			g.setFont(font);
+			g.setColor(Color.decode("#551A8B"));
+			g.drawString("So you are a " + race + " " + abil + " then?", x, 50);
+			g.setColor(Color.BLACK);
+			g.drawString("Yes", x, 100);
+			g.drawString("No", x, 150);
+		} else if (state == 5) {
+			Font font = new Font("Impact", Font.BOLD, 40);
+			g.setFont(font);
+			g.setColor(Color.decode("#551A8B"));
+			g.drawString("You are going to the military recruitment station, Do you...", x, 50);
+			g.setColor(Color.BLUE);
+			g.drawString("Join the Stormcloaks", x, 100);
+			g.setColor(Color.RED);
+			g.drawString("Join the Imperials", x, 150);
+		} else if (state == 6) {
+			if (ally == "Stormcloak") {
+				Font font = new Font("Impact", Font.BOLD, 40);
+				g.setFont(font);
+				g.setColor(Color.BLACK);
+				g.drawString("Your first mission is to raid an Imperial Trade Convoy, Do you...", x, 50);
+				g.setColor(Color.BLUE);
+				g.drawString("Join the Engagement Party", x, 100);
+				g.drawString("Patrol the Flank", x, 150);
+			}
+			if (ally == "Imperial") {
+				Font font = new Font("Impact", Font.BOLD, 40);
+				g.setFont(font);
+				g.setColor(Color.BLACK);
+				g.drawString("Your first mission is to raid an Stormcloak Trade Post, Do you...", x, 50);
+				g.setColor(Color.RED);
+				g.drawString("Target the Enemy Troops", x, 100);
+				g.drawString("Destroy the Stormcloak's Shipping Crates", x, 150);
+			}
+
+		} else if (state == 7) {
+			Font font = new Font("Impact", Font.BOLD, 40);
+			g.setFont(font);
+			g.setColor(Color.RED);
+			g.drawString("You Charged the Enemy Troops alone and died.", x, 50);
+		} else if (state==8) {
+			Font font = new Font("Impact", Font.BOLD, 40);
+			g.setFont(font);
+			g.setColor(Color.BLACK);
+			g.drawString("You destroy the Shipping Crates, Do You...", x, 50);
+			g.setColor(Color.RED);
+			g.drawString("Regroup and focus on their Troops together", x, 100);
+			g.drawString("Loot from the ", x, 150);
 		}
+
 	}
+
+	
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		System.out.println(e.getX() + ", " + e.getY());
+
+		if (e.getX() >= 1120 && e.getY() >= 537 && e.getX() <= 1269 && e.getY() <= 688) {
+			state = 6;
+			ally = "Imperial";
+		}
+
 		if (state == 0 && e.getX() >= 330 && e.getY() >= 315 && e.getX() <= 420 && e.getY() <= 350) {
 			state++;
-		} else if (state == 1 && e.getX() >= 330 && e.getY() >= 315 && e.getX() <= 420 && e.getY() <= 350) {
+			System.out.print(state);
+
+		} else if (state == 1 && e.getX() >= 20 && e.getY() >= 66 && e.getX() <= 105 && e.getY() <= 101) {
+			race = "Nord";
 			state++;
+			System.out.print(state);
+		} else if (state == 1 && e.getX() >= 20 && e.getY() >= 120 && e.getX() <= 70 && e.getY() <= 151) {
+			race = "Elf";
+			state++;
+			System.out.print(state);
+
+		} else if (state == 1 && e.getX() >= 20 && e.getY() >= 166 && e.getX() <= 130 && e.getY() <= 201) {
+			race = "Khajit";
+			state++;
+			System.out.print(state);
+
+		} else if (state == 1 && e.getX() >= 20 && e.getY() >= 215 && e.getX() <= 184 && e.getY() <= 252) {
+			race = "Argonian";
+			state++;
+			System.out.print(state);
+
+		} else if (state == 2 && e.getX() >= 20 && e.getY() >= 66 && e.getX() <= 84 && e.getY() <= 99) {
+			state++;
+			System.out.print(state);
+		} else if (state == 2 && e.getX() >= 20 && e.getY() >= 116 && e.getX() <= 68 && e.getY() <= 150) {
+			state--;
+			System.out.print(state);
+		} else if (state == 3 && e.getX() >= 20 && e.getY() >= 66 && e.getX() <= 161 && e.getY() <= 100) {
+			state++;
+			abil = "Warrior";
+		} else if (state == 3 && e.getX() >= 20 && e.getY() >= 117 && e.getX() <= 141 && e.getY() <= 152) {
+			state++;
+			abil = "Archer";
+		} else if (state == 3 && e.getX() >= 20 && e.getY() >= 166 && e.getX() <= 117 && e.getY() <= 203) {
+			state++;
+			abil = "Mage";
+		} else if (state == 4 && e.getX() >= 20 && e.getY() >= 66 && e.getX() <= 84 && e.getY() <= 99) {
+			state++;
+			System.out.print(state);
+		} else if (state == 4 && e.getX() >= 20 && e.getY() >= 116 && e.getX() <= 68 && e.getY() <= 150) {
+			state--;
+		} else if (state == 5 && e.getX() >= 17 && e.getY() >= 60 && e.getX() <= 397 && e.getY() <= 102) {
+			ally = "Stormcloak";
+			state++;
+		} else if (state == 5 && e.getX() >= 17 && e.getY() >= 115 && e.getX() <= 344 && e.getY() <= 153) {
+			ally = "Imperial";
+			state++;
+		} else if (ally == "Imperial" && state == 6 && e.getX() >= 17 && e.getY() >= 68 && e.getX() <= 465 && e.getY() <= 103) {
+			state++;
+		} else if (ally == "Imperial" && state == 6 && e.getX() >= 17 && e.getY() >= 118 && e.getX() <= 775 && e.getY() <= 153) {
+			state = state + 2;
 		}
 		repaint();
 	}
@@ -94,5 +211,5 @@ public class YourAdventure extends JComponent implements MouseListener {
 		frame.setVisible(true);
 		frame.getContentPane().setBackground(Color.decode("#f44e42"));
 	}
-	
+
 }
