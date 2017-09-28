@@ -19,6 +19,16 @@ public class YourAdventure extends JComponent implements MouseListener {
 	public YourAdventure() {
 		addMouseListener(this);
 	}
+	
+	public static int liveRNG(int live){
+		live = (int)(Math.random()*10);
+		if(live>70){
+			live=1;
+		} else if (live<70){
+			live=0;
+		}
+		return live;
+	}
 
 	public void paint(Graphics g) {
 		if (state == 0) {
@@ -75,38 +85,38 @@ public class YourAdventure extends JComponent implements MouseListener {
 			g.drawString("Join the Imperials", x, 150);
 		} else if (state == 6) {
 			if (ally == "Stormcloak") {
-				Font font = new Font("Impact", Font.BOLD, 40);
-				g.setFont(font);
-				g.setColor(Color.BLACK);
-				g.drawString("Your first mission is to raid an Imperial Trade Convoy, Do you...", x, 50);
-				g.setColor(Color.BLUE);
-				g.drawString("Join the Engagement Party", x, 100);
-				g.drawString("Patrol the Flank", x, 150);
+			Font font = new Font("Impact", Font.BOLD, 40);
+			g.setFont(font);
+			g.setColor(Color.BLACK);
+			g.drawString("Your first mission is to raid an Imperial Trade Convoy, Do you...", x, 50);
+			g.setColor(Color.BLUE);
+			g.drawString("Join the Engagement Party", x, 100);
+			g.drawString("Patrol the Flank", x, 150);
 			}
 			if (ally == "Imperial") {
-				Font font = new Font("Impact", Font.BOLD, 40);
-				g.setFont(font);
-				g.setColor(Color.BLACK);
-				g.drawString("Your first mission is to raid an Stormcloak Trade Post, Do you...", x, 50);
-				g.setColor(Color.RED);
-				g.drawString("Target the Enemy Troops", x, 100);
-				g.drawString("Destroy the Stormcloak's Shipping Crates", x, 150);
+			Font font = new Font("Impact", Font.BOLD, 40);
+			g.setFont(font);
+			g.setColor(Color.BLACK);
+			g.drawString("Your first mission is to raid an Stormcloak Trade Post, Do you...", x, 50);
+			g.setColor(Color.RED);
+			g.drawString("Target the Enemy Troops", x, 100);
+			g.drawString("Destroy the Stormcloak's Shipping Crates", x, 150);
 			}
 
 		} else if (state == 7) {
 			if (ally == "Imperial") {
-				Font font = new Font("Impact", Font.BOLD, 40);
-				g.setFont(font);
-				g.setColor(Color.RED);
-				g.drawString("You Charged the Enemy Troops alone and died.", x, 50); // ENDING
-																						// 1
+			Font font = new Font("Impact", Font.BOLD, 40);
+			g.setFont(font);
+			g.setColor(Color.RED);
+			g.drawString("You Charged the Enemy Troops alone and died.", x, 50); // ENDING 1
+																						
 			}
 			if (ally == "Stormcloak") {
-				Font font = new Font("Impact", Font.BOLD, 40);
-				g.setFont(font);
-				g.setColor(Color.RED);
-				g.drawString("Your party got focused and you were killed", x, 50); // ENDING
-																						// 1
+			Font font = new Font("Impact", Font.BOLD, 40);
+			g.setFont(font);
+			g.setColor(Color.RED);
+			g.drawString("Your party got focused and you were killed", x, 50); // ENDING 2
+																					
 			}
 		} else if (state == 8) {
 			if (ally == "Imperial"){
@@ -132,7 +142,13 @@ public class YourAdventure extends JComponent implements MouseListener {
 			Font font = new Font("Impact", Font.BOLD, 40);
 			g.setFont(font);
 			g.setColor(Color.RED);
-			g.drawString("Did you honestly expect to out run wolves and live?", x, 50);	// ENDING 2
+			g.drawString("Did you honestly expect to out run wolves and live?", x, 50);	// ENDING 3
+			}
+			if(ally == "Imperial"){
+			Font font = new Font("Impact", Font.BOLD, 40);
+			g.setFont(font);
+			g.setColor(Color.RED);
+			g.drawString("Did you honestly expect to out run wolves and live?", x, 50);	
 			}
 		}
 
@@ -202,8 +218,14 @@ public class YourAdventure extends JComponent implements MouseListener {
 			state = state + 2;
 		} else if (ally == "Stormcloak" && state == 6 && e.getX() >= 20 && e.getY() >= 118 && e.getX() <= 304 && e.getY() <= 151){
 			state = state+2;
-		} else if (ally == "Stormcloak" && state == 8 && e.getX() >= 20 && e.getY() >= 118 && e.getX() <= 194 && e.getY() <= 151){
+		} else if (ally == "Stormcloak" && state == 8 && e.getX() >= 20 && e.getY() >= 66 && e.getX() <= 314 && e.getY() <= 101){
 			state++;
+		} else if (ally == "Stormcloak" && state == 8 && e.getX() >= 20 && e.getY() >= 118 && e.getX() <= 194 && e.getY() <= 151){
+			state = state+2;
+		} else if (ally == "Imperial" && state == 8 && e.getX() >= 20 && e.getY() >= 67 && e.getX() <= 811 && e.getY() <= 101){
+			state = state+2;
+		} else if (ally == "Imperial" && state == 8 && e.getX() >= 20 && e.getY() >= 118 && e.getX() <= 384 && e.getY() <= 151){
+			state = state+2;
 		}
 		repaint();
 	}
