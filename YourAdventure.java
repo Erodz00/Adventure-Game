@@ -12,6 +12,7 @@ public class YourAdventure extends JComponent implements MouseListener {
 
 	int state = 0;
 	int x = 20;
+	int live;
 	String race = "default";
 	String abil = "default";
 	String ally = "default";
@@ -22,14 +23,36 @@ public class YourAdventure extends JComponent implements MouseListener {
 	
 	public static int liveRNG(int live){
 		live = (int)(Math.random()*10);
-		if(live>70){
+		if(live>1){
 			live=1;
-		} else if (live<70){
+		} else if (live<1){
 			live=0;
 		}
 		return live;
 	}
-
+	
+/*
+				if (ally == "Imperial"){
+			Font font = new Font("Impact", Font.BOLD, 40);
+			g.setFont(font);
+			g.setColor(Color.BLACK);
+			g.drawString("Do You...", x, 50);
+			g.setColor(Color.RED);
+			g.drawString("", x, 100);
+			g.drawString("", x, 150);
+			}
+			if (ally == "Stormcloak"){
+			Font font = new Font("Impact", Font.BOLD, 40);
+			g.setFont(font);
+			g.setColor(Color.BLACK);
+			g.drawString("Do you...", x, 50);
+			g.setColor(Color.BLUE);
+			g.drawString("", x, 100);
+			g.drawString("", x, 150);
+			}
+	*/
+	
+	
 	public void paint(Graphics g) {
 		if (state == 0) {
 			Font font = new Font("Impact", Font.BOLD, 40);
@@ -145,10 +168,36 @@ public class YourAdventure extends JComponent implements MouseListener {
 			g.drawString("Did you honestly expect to out run wolves and live?", x, 50);	// ENDING 3
 			}
 			if(ally == "Imperial"){
+			Font font = new Font("Impact", Font.BOLD, 30);
+			g.setFont(font);
+			g.setColor(Color.BLACK);
+			g.drawString("You and your fellow troops force their troops to flee and capture the fort", x, 50);	//ENDING4
+			}
+		}  else if (state == 10) {
+			if (ally == "Imperial" && (live==0)){
+			Font font = new Font("Impact", Font.BOLD, 30);
+			g.setFont(font);
+			g.setColor(Color.BLACK);
+			g.drawString("While looting from the rubble, you were split from your division and killed.", x, 50);
+			g.setColor(Color.RED);
+			}
+			if (ally == "Imperial" && (live== 1)){
+			Font font = new Font("Impact", Font.BOLD, 30);
+			g.setFont(font);
+			g.setColor(Color.BLACK);
+			g.drawString("", x, 50);
+			g.setColor(Color.RED);
+			g.drawString("", x, 100);
+			g.drawString("", x, 150);
+			}
+			if (ally == "Stormcloak"){
 			Font font = new Font("Impact", Font.BOLD, 40);
 			g.setFont(font);
-			g.setColor(Color.RED);
-			g.drawString("Did you honestly expect to out run wolves and live?", x, 50);	
+			g.setColor(Color.BLACK);
+			g.drawString("You successfully fend off the wolves, Do you...", x, 50);
+			g.setColor(Color.BLUE);
+			g.drawString("Meet up with your fellow soldiers", x, 100);
+			g.drawString("", x, 150);
 			}
 		}
 
@@ -157,7 +206,7 @@ public class YourAdventure extends JComponent implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		System.out.println(e.getX() + ", " + e.getY());
-
+		
 		if (e.getX() >= 1120 && e.getY() >= 537 && e.getX() <= 1269 && e.getY() <= 688) {
 			state = 6;
 			ally = "Imperial";
@@ -218,12 +267,12 @@ public class YourAdventure extends JComponent implements MouseListener {
 			state = state + 2;
 		} else if (ally == "Stormcloak" && state == 6 && e.getX() >= 20 && e.getY() >= 118 && e.getX() <= 304 && e.getY() <= 151){
 			state = state+2;
-		} else if (ally == "Stormcloak" && state == 8 && e.getX() >= 20 && e.getY() >= 66 && e.getX() <= 314 && e.getY() <= 101){
-			state++;
 		} else if (ally == "Stormcloak" && state == 8 && e.getX() >= 20 && e.getY() >= 118 && e.getX() <= 194 && e.getY() <= 151){
-			state = state+2;
+			state++; //ENDING 3 
+		}else if (ally == "Stormcloak" && state == 8 && e.getX() >= 20 && e.getY() >= 66 && e.getX() <= 314 && e.getY() <= 101){
+			state=state+2;
 		} else if (ally == "Imperial" && state == 8 && e.getX() >= 20 && e.getY() >= 67 && e.getX() <= 811 && e.getY() <= 101){
-			state = state+2;
+			state++; //ENDING 4
 		} else if (ally == "Imperial" && state == 8 && e.getX() >= 20 && e.getY() >= 118 && e.getX() <= 384 && e.getY() <= 151){
 			state = state+2;
 		}
@@ -250,7 +299,6 @@ public class YourAdventure extends JComponent implements MouseListener {
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -261,7 +309,7 @@ public class YourAdventure extends JComponent implements MouseListener {
 		frame.add(new YourAdventure());
 		frame.setSize(1280, 720);
 		frame.setVisible(true);
-		frame.getContentPane().setBackground(Color.decode("#f44e42"));
+		frame.getContentPane().setBackground(Color.YELLOW);
 	}
 
 }
