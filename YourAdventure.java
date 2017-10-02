@@ -269,7 +269,7 @@ public class YourAdventure extends JComponent implements MouseListener {
 				Font font = new Font("Impact", Font.BOLD, 30);
 				g.setFont(font);
 				g.setColor(Color.BLACK);
-				g.drawString("As an Khajit, you lose the fight but manage to escape the city as he chases you", x, 50); // ENDING 10
+				g.drawString("As an Khajit, you lose the fight but manage to escape the city as he chases you away", x, 50); // ENDING 10
 			}
 			if(race=="Argonian") {
 				Font font = new Font("Impact", Font.BOLD, 30);
@@ -287,7 +287,7 @@ public class YourAdventure extends JComponent implements MouseListener {
 		if (e.getX() >= 1120 && e.getY() >= 537 && e.getX() <= 1269 && e.getY() <= 688) {
 			state = 17;
 			ally = "Imperial";
-			race= "Nord";
+			race= "Argonian";
 		}
 
 		if (state == 0 && e.getX() >= 330 && e.getY() >= 315 && e.getX() <= 420 && e.getY() <= 350) {
