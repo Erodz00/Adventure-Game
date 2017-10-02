@@ -244,18 +244,50 @@ public class YourAdventure extends JComponent implements MouseListener {
 			g.setColor(Color.BLACK);
 			g.drawString("One of the locals is drunk and wants to fight, Do you...", x, 50);
 			g.setColor(Color.RED);
-			g.drawString("Fight him head on", x, 100);
-			g.drawString("", x, 150);
+			g.drawString("Fight him head on, no turning back.", x, 100);
+		} else if (state == 16) {
+			Font font = new Font("Impact", Font.BOLD, 40);
+			g.setFont(font);
+			g.setColor(Color.BLACK);
+			g.drawString("One of the locals is drunk and wants to fight, Do you...", x, 50);
+			g.setColor(Color.RED);
+			g.drawString("Fight him head on, no turning back.", x, 100);
+		} else if (state == 17) {
+			if(race=="Nord") {
+				Font font = new Font("Impact", Font.BOLD, 30);
+				g.setFont(font);
+				g.setColor(Color.BLACK);
+				g.drawString("As a Nord, you use your overwhelming strength to knock him out", x, 50); //ENDING 8
+			}
+			if(race=="Elf") {
+				Font font = new Font("Impact", Font.BOLD, 30);
+				g.setFont(font);
+				g.setColor(Color.RED);		
+				g.drawString("As an Elf, the Drunkard overpowers you and kills you", x, 50); //ENDING 9
+			}
+			if(race=="Khajit") {
+				Font font = new Font("Impact", Font.BOLD, 30);
+				g.setFont(font);
+				g.setColor(Color.BLACK);
+				g.drawString("As an Khajit, you lose the fight but manage to escape the city as he chases you", x, 50); // ENDING 10
+			}
+			if(race=="Argonian") {
+				Font font = new Font("Impact", Font.BOLD, 30);
+				g.setFont(font);
+				g.setColor(Color.BLACK);
+				g.drawString("As an Argonian, your rough skin easily knocks him out and you win free drinks on the house", x, 50); //ENDING 11
+			}
 		}
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		System.out.println(e.getX() + ", " + e.getY());
-		
+		//skip command V
 		if (e.getX() >= 1120 && e.getY() >= 537 && e.getX() <= 1269 && e.getY() <= 688) {
-			state = 6;
+			state = 17;
 			ally = "Imperial";
+			race= "Nord";
 		}
 
 		if (state == 0 && e.getX() >= 330 && e.getY() >= 315 && e.getX() <= 420 && e.getY() <= 350) {
@@ -337,6 +369,8 @@ public class YourAdventure extends JComponent implements MouseListener {
 			state++;
 		} else if (state == 13 && e.getX() >= 20 && e.getY() >= 118 && e.getX() <= 467 && e.getY() <= 154){
 			state=state+2;
+		} else if (state == 16 && e.getX() >= 20 && e.getY() >= 68 && e.getX() <= 658 && e.getY() <= 101){
+			state++;
 		}
 		repaint();
 	}
