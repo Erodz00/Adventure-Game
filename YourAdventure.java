@@ -214,24 +214,35 @@ public class YourAdventure extends JComponent implements MouseListener {
 			g.drawString("Using the sword, you single handedly capture the fort and become a hero", x, 50);	//ENDING 6
 			}
 		} else if (state == 12) {
-			if (ally == "Imperial"){
 			Font font = new Font("Impact", Font.BOLD, 40);
 			g.setFont(font);
 			g.setColor(Color.BLACK);
-			g.drawString(", Do You...", x, 50);
+			g.drawString("Do you wish to visit the...", x, 50);
 			g.setColor(Color.RED);
-			g.drawString("", x, 100);
-			g.drawString("", x, 150);
-			}
-			if (ally == "Stormcloak"){
+			g.drawString("Tavern", x, 100);
+			g.drawString("Shop", x, 150);
+		} else if (state == 13) {
 			Font font = new Font("Impact", Font.BOLD, 40);
 			g.setFont(font);
 			g.setColor(Color.BLACK);
-			g.drawString("Do you...", x, 50);
-			g.setColor(Color.BLUE);
-			g.drawString("", x, 100);
+			g.drawString("Do You...", x, 50);
+			g.setColor(Color.RED);
+			g.drawString("Get some drinks", x, 100);
+			g.drawString("Converse with the locals", x, 150);
+		} else if (state == 14) {
+			Font font = new Font("Impact", Font.BOLD, 40);
+			g.setFont(font);
+			g.setColor(Color.BLACK);
+			g.drawString("You become so drunk that you die of Alcohol poisoning", x, 50); //ENDING 7
+			g.setColor(Color.RED);
+		} else if (state == 15) {
+			Font font = new Font("Impact", Font.BOLD, 40);
+			g.setFont(font);
+			g.setColor(Color.BLACK);
+			g.drawString("One of the locals is drunk and wants to fight, Do you...", x, 50);
+			g.setColor(Color.RED);
+			g.drawString("Fight him head on", x, 100);
 			g.drawString("", x, 150);
-			}
 		}
 	}
 
@@ -314,6 +325,14 @@ public class YourAdventure extends JComponent implements MouseListener {
 		} else if (ally == "Imperial" && state == 10 && e.getX() >= 20 && e.getY() >= 65 && e.getX() <= 473 && e.getY() <= 100){
 			state++;
 		} else if (ally == "Imperial" && state == 10 && e.getX() >= 20 && e.getY() >= 114 && e.getX() <= 478 && e.getY() <= 152){
+			state=state+2;
+		} else if (state == 12 && e.getX() >= 20 && e.getY() >= 68 && e.getX() <= 143 && e.getY() <= 101){
+			state++;
+		} else if (state == 12 && e.getX() >= 20 && e.getY() >= 118 && e.getX() <= 109 && e.getY() <= 154){
+			state=state+2;
+		} else if (state == 13 && e.getX() >= 20 && e.getY() >= 68 && e.getX() <= 312 && e.getY() <= 101){
+			state++;
+		} else if (state == 13 && e.getX() >= 20 && e.getY() >= 118 && e.getX() <= 467 && e.getY() <= 154){
 			state=state+2;
 		}
 		repaint();
