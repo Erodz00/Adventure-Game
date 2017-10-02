@@ -6,6 +6,9 @@ import java.awt.event.MouseListener;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
+/*
+PROJECT BY ENRIQUE RODRIGUEZ, PERIOD 7
+*/
 public class YourAdventure extends JComponent implements MouseListener {
 
 	public static String nameOfApp = "Programming a Game, the Game";
