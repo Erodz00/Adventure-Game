@@ -277,7 +277,49 @@ public class YourAdventure extends JComponent implements MouseListener {
 				g.setColor(Color.BLACK);
 				g.drawString("As an Argonian, your rough skin easily knocks him out and you win free drinks on the house", x, 50); //ENDING 11
 			}
-		}
+		} else if (state == 18) {
+			if (ally == "Imperial"){
+			Font font = new Font("Impact", Font.BOLD, 40);
+			g.setFont(font);
+			g.setColor(Color.BLACK);
+			g.drawString("Approaching the Shopkeeper, Do you...", x, 50);
+			g.setColor(Color.RED);
+			g.drawString("Sell your sword", x, 100);
+			g.drawString("Attempt to rob him with your sword", x, 150);
+			}
+			if (ally == "Stormcloak"){
+			Font font = new Font("Impact", Font.BOLD, 40);
+			g.setFont(font);
+			g.setColor(Color.BLACK);
+			g.drawString("Arriving at the store, there was nothing you could buy", x, 50);
+			g.setColor(Color.BLUE);
+			g.drawString("Exit the Shop", x, 100);
+			}
+		} else if (state == 19) {
+			Font font = new Font("Impact", Font.BOLD, 40);
+			g.setFont(font);
+			g.setColor(Color.BLACK);
+			g.drawString("You sell your sword and become the richest person in Skyrim", x, 50); //Ending 12
+		} else if (state == 20) {
+			if(abil=="Warrior") {
+				Font font = new Font("Impact", Font.BOLD, 30);
+				g.setFont(font);
+				g.setColor(Color.BLACK);
+				g.drawString("As a warrior, you successfully overpowered and steal his money before leaving town", x, 50); //ENDING 13
+			}
+			if(abil=="Archer") {
+				Font font = new Font("Impact", Font.BOLD, 30);
+				g.setFont(font);
+				g.setColor(Color.RED);		
+				g.drawString("As an Archer, you fail to overpower him and get imprisoned for life", x, 50); //ENDING 14
+			}
+			if(abil=="Mage") {
+				Font font = new Font("Impact", Font.BOLD, 30);
+				g.setFont(font);
+				g.setColor(Color.BLACK);
+				g.drawString("As a Mage, you fail in robbing in and in haste, light the building on fire, trapping and killing you inside", x, 50); // ENDING 15
+			}
+		}	
 	}
 
 	@Override
@@ -285,8 +327,8 @@ public class YourAdventure extends JComponent implements MouseListener {
 		System.out.println(e.getX() + ", " + e.getY());
 		//skip command V
 		if (e.getX() >= 1120 && e.getY() >= 537 && e.getX() <= 1269 && e.getY() <= 688) {
-			state = 17;
-			ally = "Imperial";
+			state = 12;
+			ally = "Stormcloak";
 			race= "Argonian";
 		}
 
@@ -354,24 +396,30 @@ public class YourAdventure extends JComponent implements MouseListener {
 		} else if (ally == "Imperial" && state == 8 && e.getX() >= 20 && e.getY() >= 118 && e.getX() <= 384 && e.getY() <= 151){
 			state = state+2;
 		} else if (ally == "Stormcloak" && state == 10 && e.getX() >= 20 && e.getY() >= 65 && e.getX() <= 625 && e.getY() <= 100){
-			state++;
+			state++;//ending 5
 		} else if (ally == "Stormcloak" && state == 10 && e.getX() >= 20 && e.getY() >= 114 && e.getX() <= 554 && e.getY() <= 152){
 			state=state+2;
 		} else if (ally == "Imperial" && state == 10 && e.getX() >= 20 && e.getY() >= 65 && e.getX() <= 473 && e.getY() <= 100){
-			state++;
+			state++;//ending6
 		} else if (ally == "Imperial" && state == 10 && e.getX() >= 20 && e.getY() >= 114 && e.getX() <= 478 && e.getY() <= 152){
 			state=state+2;
 		} else if (state == 12 && e.getX() >= 20 && e.getY() >= 68 && e.getX() <= 143 && e.getY() <= 101){
 			state++;
 		} else if (state == 12 && e.getX() >= 20 && e.getY() >= 118 && e.getX() <= 109 && e.getY() <= 154){
-			state=state+2;
+			state=state+6;
 		} else if (state == 13 && e.getX() >= 20 && e.getY() >= 68 && e.getX() <= 312 && e.getY() <= 101){
-			state++;
+			state++;//Ending 7
 		} else if (state == 13 && e.getX() >= 20 && e.getY() >= 118 && e.getX() <= 467 && e.getY() <= 154){
 			state=state+2;
 		} else if (state == 16 && e.getX() >= 20 && e.getY() >= 68 && e.getX() <= 658 && e.getY() <= 101){
-			state++;
-		}
+			state++; //Endings 8,9,10,11
+		} else if (ally == "Imperial" || state == 18 && e.getX() >= 20 && e.getY() >= 68 && e.getX() <= 301 && e.getY() <= 101){
+		state++; //Ending 12
+		} else if (ally == "Imperial" || state == 18 && e.getX() >= 17 && e.getY() >= 117 && e.getX() <= 658 && e.getY() <= 154){
+		state=state+2; //Ending 13,14,15
+		} else if (ally == "Stormcloak" || state == 18 && e.getX() >= 17 && e.getY() >= 66 && e.getX() <= 251 && e.getY() <= 103){
+			state=12;
+			}
 		repaint();
 	}
 
